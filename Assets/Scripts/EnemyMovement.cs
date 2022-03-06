@@ -17,11 +17,12 @@ public class EnemyMovement : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         timer = timerDuration;
         token = new CancellationTokenSource();
+        await waitToStart();
         turnTimer(token.Token);
     }
 
@@ -29,6 +30,11 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
           
+    }
+
+    async Task waitToStart()
+    {
+        await Task.Delay(UnityEngine.Random.Range(0, 1000));
     }
 
     async void turnTimer(CancellationToken token = default)
@@ -59,13 +65,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
             isColliding = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
             isColliding = false;
     }
 

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Brick
+  - Tilemap
+  - QuestionBlock
   layers:
   - Default
   - TransparentFX
