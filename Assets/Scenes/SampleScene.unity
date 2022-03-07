@@ -224,8 +224,6 @@ MonoBehaviour:
   rb: {fileID: 455404505}
   jumpForce: 3
   velocity: {x: 0, y: 0, z: 0}
-  brickBreakSound: {fileID: 0}
-  audioSource: {fileID: 1383591860}
   tileMap: {fileID: 1906495854}
   questionBlockPrefab: {fileID: 199938369426584663, guid: f072d77422a405847afe0e3cd3f7ec0f, type: 3}
   powerUps:
@@ -883,7 +881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907256382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1528,6 +1526,22 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 194314068906714711, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5058539
+      objectReference: {fileID: 0}
+    - target: {fileID: 194314068906714711, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3170735
+      objectReference: {fileID: 0}
+    - target: {fileID: 194314068906714711, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.015365958
+      objectReference: {fileID: 0}
+    - target: {fileID: 194314068906714711, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.00439018
+      objectReference: {fileID: 0}
     - target: {fileID: 194314068906714713, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: m_Name
       value: mario
@@ -1789,7 +1803,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906495851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.64, z: 0}
+  m_LocalPosition: {x: 0, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
