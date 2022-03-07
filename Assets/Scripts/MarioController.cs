@@ -59,7 +59,8 @@ public class MarioController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.transform.localScale = new Vector3(1, 0.1f, 1);
+            Destroy(collision.gameObject, 0.3f);
         }
     }
 
