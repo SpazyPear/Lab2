@@ -10,10 +10,6 @@ public class BlockBehaviour : MonoBehaviour
     public float jumpForce = 3f;
     private Vector3 prevPos;
     public Vector3 velocity;
-    [SerializeField]
-    AudioClip brickBreakSound;
-    [SerializeField]
-    AudioSource audioSource;
     public Tilemap tileMap;
     public GameObject questionBlockPrefab;
     public GameObject[] powerUps;
@@ -52,25 +48,19 @@ public class BlockBehaviour : MonoBehaviour
     {
         Debug.Log(velocity);
 
-        if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0.5f)
+      if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0.5f)
         {
 
-            if (audioSource && brickBreakSound)
-            {
-                audioSource.PlayOneShot(brickBreakSound);
-            }
             foreach (ContactPoint2D hit in collision.contacts)
             {
                 Vector2 hitPosition = new Vector2();
                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                if (tileMap.GetTile(tileMap.WorldToCell(hitPosition)).name.Equals("brick_block"))
-                    tileMap.SetTile(tileMap.WorldToCell(hitPosition), null);
-            }
-
-            if (audioSource && brickBreakSound)
-            {
-                audioSource.PlayOneShot(brickBreakSound);
+                //hitPosition += new Vector2(1, 0);
+                Debug.Log(tileMap.WorldToCell(hit.point) + new Vector3Int(0, 1));
+                TileBase tile = tileMap.GetTile(tileMap.WorldToCell(hit.point) + new Vector3Int(1, 1));
+                if (tile && tile.name == "brick_block")
+                    tileMap.SetTile(tileMap.WorldToCell(hit.point) + new Vector3Int(1, 1), null);
             }
         }
 

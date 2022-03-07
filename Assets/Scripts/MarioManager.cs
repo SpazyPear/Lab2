@@ -42,7 +42,6 @@ public class MarioManager : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(marioController.velocity.y);
          if (collision.gameObject.CompareTag("Tilemap") && canBeGrounded)
          {
             isGrounded = true;
