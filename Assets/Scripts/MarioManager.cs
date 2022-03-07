@@ -24,6 +24,13 @@ public class MarioManager : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1.0f, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
+        }
+
+        
+
     }
 
 

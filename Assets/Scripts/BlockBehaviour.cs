@@ -16,6 +16,9 @@ public class BlockBehaviour : MonoBehaviour
     AudioSource audioSource;
     public Tilemap tileMap;
     public GameObject questionBlockPrefab;
+    public GameObject[] powerUps;
+    public float powerUpPopUpSpeed = 1.5f;
+    public PowerUpBehaviour powerUpManager;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,11 @@ public class BlockBehaviour : MonoBehaviour
     void Update()
     {
         velocity = (transform.position - prevPos) / Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+        prevPos = transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,16 +71,42 @@ public class BlockBehaviour : MonoBehaviour
             }
         }
 
-        else if (collision.gameObject.CompareTag("QuestionBlock"))
+        else if (collision.gameObject.CompareTag("QuestionBlock") && velocity.y > 0.5f)
         {
+            collision.gameObject.tag = "Untagged";
             collision.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+            GameObject powerUp = Instantiate(powerUps[2], collision.gameObject.transform.position, Quaternion.identity);
+            StartCoroutine(powerUpPopUp(powerUp));
         }
     }
 
-    private void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        prevPos = transform.position;
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            switch (collision.gameObject.GetComponent<SpriteRenderer>().sprite.name)
+            {
+                case "fire_flower":
+                    powerUpManager.changeState(State.FireFlower);
+                    break;
+                case "starman":
+                    powerUpManager.changeState(State.Star);
+                    break;
+                case "coin":
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
     }
 
+    IEnumerator powerUpPopUp(GameObject powerUp)
+    {
+        Vector3 startPos = powerUp.transform.position;
+        while (powerUp.transform.position.y < tileMap.cellSize.y + startPos.y)
+        {
+            powerUp.transform.position += new Vector3(0f, powerUpPopUpSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }
