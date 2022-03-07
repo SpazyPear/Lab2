@@ -57,10 +57,10 @@ public class BlockBehaviour : MonoBehaviour
                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
                 //hitPosition += new Vector2(1, 0);
-                Debug.Log(tileMap.WorldToCell(hit.point) + new Vector3Int(0, 1));
-                TileBase tile = tileMap.GetTile(tileMap.WorldToCell(hit.point) + new Vector3Int(1, 1));
+                Debug.Log(tileMap.WorldToCell(hitPosition));
+                TileBase tile = tileMap.GetTile(tileMap.WorldToCell(hitPosition));
                 if (tile && tile.name == "brick_block")
-                    tileMap.SetTile(tileMap.WorldToCell(hit.point) + new Vector3Int(1, 1), null);
+                    tileMap.SetTile(tileMap.WorldToCell(hitPosition), null);
             }
         }
 
