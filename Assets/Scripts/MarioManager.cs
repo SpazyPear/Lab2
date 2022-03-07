@@ -17,16 +17,17 @@ public class MarioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(Input.GetAxis("Horizontal") * marioSpeed * Time.deltaTime, 0.0f, 0.0f);
+        Transform curTransform = transform.parent == null ? transform : transform.parent;
+        curTransform.position += new Vector3(Input.GetAxis("Horizontal") * marioSpeed * Time.deltaTime, 0.0f, 0.0f);
 
-        if ((transform.localScale.x > 0 && Input.GetAxis("Horizontal") < 0) || (transform.localScale.x < 0 && Input.GetAxis("Horizontal") > 0.1f))
+        if ((curTransform.localScale.x > 0 && Input.GetAxis("Horizontal") < 0) || (curTransform.localScale.x < 0 && Input.GetAxis("Horizontal") > 0.1f))
             {
-                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1.0f, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            curTransform.localScale = new Vector3(curTransform.localScale.x * -1.0f, curTransform.localScale.y, curTransform.localScale.z);
             }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
+            curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
         }
 
         

@@ -19,6 +19,7 @@ public class BlockBehaviour : MonoBehaviour
     public GameObject[] powerUps;
     public float powerUpPopUpSpeed = 1.5f;
     public PowerUpBehaviour powerUpManager;
+    Transform curTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +38,14 @@ public class BlockBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = (transform.position - prevPos) / Time.deltaTime;
+        curTransform = transform.parent == null ? transform : transform.parent;
+        velocity = (curTransform.position - prevPos) / Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-        prevPos = transform.position;
+        if (curTransform)
+            prevPos = curTransform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
