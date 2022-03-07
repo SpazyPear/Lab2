@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MarioController : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class MarioController : MonoBehaviour
     public Vector3 velocity;
     Transform curTransform;
     Vector3 prevPos;
+    public Text coinCounter;
+    public Text lifeCounter;
 
     // Start is called before the first frame update
     void Start()
     {
         lives = 3;
+        updateLivesCounter();
         coinCount = 0;
+        updateCoinCounter();
     }
 
     // Update is called once per frame
@@ -42,19 +47,21 @@ public class MarioController : MonoBehaviour
                 ExtraLife();
                 coinCount = 0;
             }
-            Camera.main.GetComponent<TextController>().UpdateCoins(coinCount);
+            updateCoinCounter();
         }
     }
 
     void ExtraLife()
     {
         lives++;
+        updateLivesCounter();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && velocity.y >= 0) {
             lives--;
+            updateLivesCounter();
             canHurt = false;
         }
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
@@ -67,5 +74,15 @@ public class MarioController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         canHurt = true;
+    }
+
+    void updateCoinCounter()
+    {
+        coinCounter.text = coinCount.ToString();
+    }
+
+    void updateLivesCounter()
+    {
+        lifeCounter.text = lives.ToString();
     }
 }

@@ -3,33 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextController : MonoBehaviour
+public class TimerController : MonoBehaviour
 {
     public Text timerTextElement;
-    public Text coinTextElement;
+    public float time;
 
-    private float time;
-    // Start is called before the first frame update
     void Start()
     {
-        time = 999;
-        coinTextElement.text = "x" + 0;
+        UpdateTime();
     }
 
     // Update is called once per frame
     void Update()
     {
         time -= Time.deltaTime;
-        DisplayTime();
+        UpdateTime();
     }
 
-    void DisplayTime()
+    void UpdateTime()
     {
-        timerTextElement.text = "TIME\n" + (int)time;
-    }
-
-    public void UpdateCoins(int coins)
-    {
-        coinTextElement.text = "x" + coins;
+        timerTextElement.text = ((int)time).ToString();
     }
 }
