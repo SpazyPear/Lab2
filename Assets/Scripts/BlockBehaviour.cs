@@ -78,7 +78,7 @@ public class BlockBehaviour : MonoBehaviour
         {
             collision.gameObject.tag = "Untagged";
             collision.gameObject.GetComponent<Animator>().SetTrigger("Hit");
-            GameObject powerUp = Instantiate(powerUps[2], collision.gameObject.transform.position, Quaternion.identity);
+            GameObject powerUp = Instantiate(powerUps[Random.Range(0, powerUps.Length)], collision.gameObject.transform.position, Quaternion.identity);
             StartCoroutine(powerUpPopUp(powerUp));
         }
     }
