@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum State { Normal = 0, FireFlower = 1, Star = 2 }
+public enum State { Normal = 0, FireFlower = 1, Star = 2, Mushrooms = 3}
 
 public class PowerUpBehaviour : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class PowerUpBehaviour : MonoBehaviour
     public float colorSpeed = 1f;
     public GameObject fireBall;
     bool FireFlowerActive = false;
+    [Header("BIG!")]
+    public float bigDuration;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,9 @@ public class PowerUpBehaviour : MonoBehaviour
             case State.Star:
                 StartCoroutine(starEffect());
                 break;
+            case State.Mushrooms:
+                StartCoroutine(bigEffect());
+                break;
         }
     }
 
@@ -67,6 +72,16 @@ public class PowerUpBehaviour : MonoBehaviour
 
         marioRenderer.color = Color.white;
         currentState = 0;
+    }
+    IEnumerator bigEffect()
+    {
+        float bigDuration = 2f;
+        while (bigDuration > 0)
+        {
+            bigDuration -= Time.deltaTime;
+            marioRenderer.size = new Vector2(2, 2);
+        }
+        yield return null;
     }
 
 }
