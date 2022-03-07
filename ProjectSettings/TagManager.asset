@@ -9,6 +9,8 @@ TagManager:
   - Tilemap
   - QuestionBlock
   - PowerUp
+  - Coin
+  - Enemy
   layers:
   - Default
   - TransparentFX

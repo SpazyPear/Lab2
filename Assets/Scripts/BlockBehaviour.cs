@@ -9,7 +9,7 @@ public class BlockBehaviour : MonoBehaviour
     public Rigidbody2D rb;
     public float jumpForce = 3f;
     private Vector3 prevPos;
-    private Vector3 velocity;
+    public Vector3 velocity;
     [SerializeField]
     AudioClip brickBreakSound;
     [SerializeField]
@@ -29,7 +29,7 @@ public class BlockBehaviour : MonoBehaviour
             if (tileMap.HasTile(position) && tileMap.GetTile(position).name.Equals("question_block"))
             {
                 tileMap.SetTile(position, null);
-                Vector3 gridPos = position + new Vector3(tileMap.cellSize.x / 2f, tileMap.cellSize.y / 2f);
+                Vector3 gridPos = tileMap.CellToWorld(position) + new Vector3(tileMap.cellSize.x / 2f, tileMap.cellSize.y / 2f);
                 Instantiate(questionBlockPrefab, gridPos, Quaternion.identity);
             }
         }

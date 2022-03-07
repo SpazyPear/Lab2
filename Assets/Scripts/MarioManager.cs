@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MarioManager : MonoBehaviour
 {
     public int marioSpeed;
-
+    bool isGrounded = true;
+    public MarioController marioController;
+    bool canBeGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,7 @@ public class MarioManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         Transform curTransform = transform.parent == null ? transform : transform.parent;
         curTransform.position += new Vector3(Input.GetAxis("Horizontal") * marioSpeed * Time.deltaTime, 0.0f, 0.0f);
@@ -25,14 +28,30 @@ public class MarioManager : MonoBehaviour
             curTransform.localScale = new Vector3(curTransform.localScale.x * -1.0f, curTransform.localScale.y, curTransform.localScale.z);
             }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            isGrounded = false;
+            canBeGrounded = false;
             curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
+            await isGroundedTimer();
         }
 
         
 
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(marioController.velocity.y);
+         if (collision.gameObject.CompareTag("Tilemap") && canBeGrounded)
+         {
+            isGrounded = true;
+         }
+    }
 
+    async Task isGroundedTimer()
+    {
+        await Task.Delay(200);
+        canBeGrounded = true; 
+    }
 }
