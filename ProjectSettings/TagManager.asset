@@ -11,6 +11,8 @@ TagManager:
   - PowerUp
   - Coin
   - Enemy
+  - Plant
+  - Shell
   layers:
   - Default
   - TransparentFX

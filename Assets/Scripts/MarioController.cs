@@ -7,12 +7,17 @@ public class MarioController : MonoBehaviour
 {
     public int lives;
     public int coinCount;
+    public int score;
+
     bool canHurt = true;
     public Vector3 velocity;
     Transform curTransform;
     Vector3 prevPos;
+
     public Text coinCounter;
     public Text lifeCounter;
+    public Text scoreCounter;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,8 @@ public class MarioController : MonoBehaviour
         updateLivesCounter();
         coinCount = 0;
         updateCoinCounter();
+        score = 0;
+        updateScoreCounter();
     }
 
     // Update is called once per frame
@@ -41,6 +48,7 @@ public class MarioController : MonoBehaviour
         if (collision.gameObject.tag == "Coin")
         {
             coinCount++;
+            score += 200;
             Destroy(collision.gameObject);
             if (coinCount == 100)
             {
@@ -48,6 +56,7 @@ public class MarioController : MonoBehaviour
                 coinCount = 0;
             }
             updateCoinCounter();
+            updateScoreCounter();
         }
     }
 
@@ -66,8 +75,10 @@ public class MarioController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
         {
+            score += 100;
             Destroy(collision.gameObject);
         }
+        updateScoreCounter();
     }
 
     IEnumerator canHurtTimer()
@@ -84,5 +95,10 @@ public class MarioController : MonoBehaviour
     void updateLivesCounter()
     {
         lifeCounter.text = lives.ToString();
+    }
+
+    void updateScoreCounter()
+    {
+        scoreCounter.text = score.ToString();
     }
 }

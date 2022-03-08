@@ -13,8 +13,11 @@ GameObject:
   - component: {fileID: 194314068906714711}
   - component: {fileID: 194314068906714710}
   - component: {fileID: 5814399969060304377}
+  - component: {fileID: 455404502}
+  - component: {fileID: 455404503}
+  - component: {fileID: 455404509}
   m_Layer: 0
-  m_Name: Mario
+  m_Name: mario
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +103,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015365958, y: 0.00439018}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.44}
+  m_Size: {x: 0.5058539, y: 1.3170735}
   m_EdgeRadius: 0
 --- !u!50 &194314068906714710
 Rigidbody2D:
@@ -133,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5814399969060304377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,5 +149,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5670215c01ee834391a57a0389477c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 0
+  lives: 3
   coinCount: 0
+  score: 0
+  velocity: {x: 0, y: 0, z: 0}
+  coinCounter: {fileID: 0}
+  lifeCounter: {fileID: 0}
+  scoreCounter: {fileID: 0}
+--- !u!114 &455404502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194314068906714713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f046bb7ea5c8e46b3c59f1df9305b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  starDuration: 5
+  marioRenderer: {fileID: 194314068906714708}
+  colors:
+  - {r: 0.42137337, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.68882465, a: 1}
+  - {r: 1, g: 0.6454026, b: 0, a: 1}
+  - {r: 0, g: 0.13172197, b: 1, a: 1}
+  colorSpeed: 1
+  fireBall: {fileID: 6033916776870670073, guid: aedd0a5904c8302409908451d1d6140d, type: 3}
+--- !u!114 &455404503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194314068906714713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88663c5b37086004a8ea12c2e65c595c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marioSpeed: 3
+  rb: {fileID: 194314068906714710}
+  jumpForce: 3
+  velocity: {x: 0, y: 0, z: 0}
+  tileMap: {fileID: 0}
+  questionBlockPrefab: {fileID: 199938369426584663, guid: f072d77422a405847afe0e3cd3f7ec0f, type: 3}
+  powerUps:
+  - {fileID: 5088102842674448255, guid: 44b6b17c7b9232b43a6d316abf38c923, type: 3}
+  - {fileID: 8067396782475164175, guid: 0c0d17e3dfdeb0c4693cc2644402a46d, type: 3}
+  - {fileID: 8545925322231892642, guid: 044f9ed7e70e82847814d5dba1c2f64d, type: 3}
+  powerUpPopUpSpeed: 1.5
+  powerUpManager: {fileID: 455404502}
+--- !u!114 &455404509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194314068906714713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87822450dd84ee4f993c8026c02f975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marioSpeed: 3
+  marioController: {fileID: 5814399969060304377}
