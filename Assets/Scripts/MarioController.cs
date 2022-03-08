@@ -11,7 +11,7 @@ public class MarioController : MonoBehaviour
     Transform curTransform;
     Vector3 prevPos;
 
-    public GameObject shell;
+   public GameObject shell;
 
     bool liveSubtract;
 
@@ -21,7 +21,7 @@ public class MarioController : MonoBehaviour
         lives = 3;
         coinCount = 0;
         liveSubtract = true;
-        //shell = GameObject.FindWithTag("Shell");
+        
     }
 
     // Update is called once per frame
@@ -29,12 +29,13 @@ public class MarioController : MonoBehaviour
     {
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
-        if(transform.position.y<-0.277872 && liveSubtract)
+        if(transform.localPosition.y<-5 && liveSubtract)
         {
             lives--;
             liveSubtract = false;
+            //Insert dying procedure here
         }
-         Debug.Log(lives); //Insert dying procedure here
+          
     }
 
     private void FixedUpdate()
@@ -65,7 +66,7 @@ public class MarioController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && velocity.y >= 0) {
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0) {
             lives--;
             canHurt = false;
         }

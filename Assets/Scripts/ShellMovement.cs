@@ -18,9 +18,9 @@ public class ShellMovement : MonoBehaviour
     {
         if(hitShell)
         {
-        transform.position += new Vector3(0.15f,0,0);
+        transform.position += new Vector3(0.3f,0,0);
         }
-        Destroy(this.gameObject, 1.5f);
+        Destroy(this.gameObject, 5f);
         
     }
      private void OnCollisionEnter2D(Collision2D collision)
