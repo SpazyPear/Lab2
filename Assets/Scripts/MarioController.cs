@@ -13,11 +13,14 @@ public class MarioController : MonoBehaviour
 
     public GameObject shell;
 
+    bool liveSubtract;
+
     // Start is called before the first frame update
     void Start()
     {
         lives = 3;
         coinCount = 0;
+        liveSubtract = true;
         //shell = GameObject.FindWithTag("Shell");
     }
 
@@ -26,6 +29,12 @@ public class MarioController : MonoBehaviour
     {
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
+        if(transform.position.y<-0.277872 && liveSubtract)
+        {
+            lives--;
+            liveSubtract = false;
+        }
+         Debug.Log(lives); //Insert dying procedure here
     }
 
     private void FixedUpdate()
