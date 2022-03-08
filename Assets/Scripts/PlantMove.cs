@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class PlantMove : MonoBehaviour
 {
-    //private Vector3 posA;
-    //private Vector3 posB;
 
     private float waitTime;
     public float startWaitTime;
     public float speed;
 
-    //private Vector3 nextPos;
-
-    //[SerializeField]
-    //private Transform childTransform;
-
-    //[SerializeField]
-    //private Transform transformB;
 
     public Transform[] moveSpots;
     private int nextSpot;
@@ -27,9 +18,7 @@ public class PlantMove : MonoBehaviour
     {
         waitTime = startWaitTime;
         nextSpot = Random.Range(0, moveSpots.Length);
-        //posA = childTransform.localPosition;
-        //posB = transformB.localPosition;
-        //nextPos = posB;
+
     }
 
     // Update is called once per frame
@@ -49,32 +38,8 @@ public class PlantMove : MonoBehaviour
                 waitTime -= Time.deltaTime;
             }
 
-            //Move();
         }
     }
 }
 
-//private void Move()
-//    {
-//        childTransform.localPosition = Vector3.MoveTowards(childTransform.localPosition, nextPos, speed * Time.deltaTime);
 
-//        if (Vector3.Distance(childTransform.localPosition, nextPos) <= 0.1)
-//        {
-//            if (waitTime <= 0)
-//            {
-//                waitTime = startWaitTime;
-//                ChangePosition();
-//            }
-//            else
-//            {
-//                waitTime -= Time.deltaTime;
-//            }
-//        }
-//    }
-
-//    private void ChangePosition()
-//    {
-//        nextPos = nextPos != posA ? posA : posB;
-//    }
-
- 

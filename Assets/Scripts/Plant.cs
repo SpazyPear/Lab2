@@ -4,69 +4,68 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
+    private Vector3 posA;
+    private Vector3 posB;
 
-    public float moveSpeed = 2f;
-    Transform bottomWayPoint, topWayPoint;
-    Vector3 localScale;
-    bool movingUp = true;
-    Rigidbody2D rb;
+    private float waitTime;
+    public float startWaitTime;
+    public float speed;
 
-    //public AudioClip pickSound;
+    private Vector3 nextPos;
+
+    [SerializeField]
+    private Transform childTransform;
+
+    [SerializeField]
+    private Transform transformB;
+
+    private void Move()
+    {
+        childTransform.localPosition = Vector3.MoveTowards(childTransform.localPosition, nextPos, speed * Time.deltaTime);
+
+        if (Vector3.Distance(childTransform.localPosition, nextPos) <= 0.1)
+        {
+                ChangePosition();
+
+        }
+    }
+
+    private void ChangePosition()
+    {
+        nextPos = nextPos != posA ? posA : posB;
+    }
 
 
+    // Start is called before the first frame update
     void Start()
     {
-        localScale = transform.localScale;
-        rb = GetComponent<Rigidbody2D>();
-        bottomWayPoint = GameObject.Find("BottomWayPoint").GetComponent<Transform>();
-        topWayPoint = GameObject.Find("TopWayPoint").GetComponent<Transform>();
+        waitTime = startWaitTime;
+        posA = childTransform.localPosition;
+        posB = transformB.localPosition;
+        nextPos = posB;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (transform.position.y > topWayPoint.position.y)
-            movingUp = false;
-        if (transform.position.y < bottomWayPoint.position.y)
-            movingUp = true;
+        transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
 
-        if (movingUp)
+        if (Vector3.Distance(transform.position, nextPos) <= 0.1)
         {
-            moveUp();
+            if (waitTime <= 0)
+            {
+                waitTime = startWaitTime;
+            }
+            else
+            {
+                waitTime -= Time.deltaTime;
+            }
+
+            Move();
         }
-
-        else
-        {
-            moveBottom();
-        }
     }
-
-    void moveUp()
-    {
-        movingUp = true;
-        localScale.y = 1;
-        transform.localScale = localScale;
-        rb.velocity = new Vector2(localScale.y * moveSpeed, rb.velocity.y);
-    }
-
-
-    void moveBottom()
-    {
-        movingUp = false;
-        localScale.y = -1;
-        transform.localScale = localScale;
-        rb.velocity = new Vector2(localScale.y * moveSpeed, rb.velocity.y);
-    }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.transform.tag == "Player" && HelicopterMovement.numOfSoldiers < 3)
-    //    {
-    //        HelicopterMovement.numOfSoldiers++;
-    //        HelicopterMovement.totalSoldiers++;
-
-    //        AudioSource.PlayClipAtPoint(pickSound, transform.position, 0.7f);
-    //        Destroy(gameObject);
-    //    }
-    //}
-
 }
+
+
+
+
