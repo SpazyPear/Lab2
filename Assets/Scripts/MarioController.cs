@@ -11,11 +11,14 @@ public class MarioController : MonoBehaviour
     Transform curTransform;
     Vector3 prevPos;
 
+    public GameObject shell;
+
     // Start is called before the first frame update
     void Start()
     {
         lives = 3;
         coinCount = 0;
+        //shell = GameObject.FindWithTag("Shell");
     }
 
     // Update is called once per frame
@@ -61,6 +64,12 @@ public class MarioController : MonoBehaviour
         {
             collision.gameObject.transform.localScale = new Vector3(1, 0.1f, 1);
             Destroy(collision.gameObject, 0.3f);
+        }
+        else if (collision.gameObject.CompareTag("KoopaTroopa") && velocity.y < 0)
+        {
+            Vector3 shellPosition = collision.gameObject.transform.localPosition;
+            Destroy(collision.gameObject);
+            Instantiate(shell, shellPosition, Quaternion.identity);
         }
     }
 

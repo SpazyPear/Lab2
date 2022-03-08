@@ -11,6 +11,9 @@ TagManager:
   - PowerUp
   - Coin
   - Enemy
+  - KoopaTroopa
+  - Shell
+  - leftShell
   layers:
   - Default
   - TransparentFX
