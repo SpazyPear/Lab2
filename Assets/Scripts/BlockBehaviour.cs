@@ -9,11 +9,7 @@ public class BlockBehaviour : MonoBehaviour
     public Rigidbody2D rb;
     public float jumpForce = 3f;
     private Vector3 prevPos;
-    private Vector3 velocity;
-    [SerializeField]
-    AudioClip brickBreakSound;
-    [SerializeField]
-    AudioSource audioSource;
+    public Vector3 velocity;
     public Tilemap tileMap;
     public GameObject questionBlockPrefab;
     public GameObject[] powerUps;
@@ -29,7 +25,7 @@ public class BlockBehaviour : MonoBehaviour
             if (tileMap.HasTile(position) && tileMap.GetTile(position).name.Equals("question_block"))
             {
                 tileMap.SetTile(position, null);
-                Vector3 gridPos = position + new Vector3(tileMap.cellSize.x / 2f, tileMap.cellSize.y / 2f);
+                Vector3 gridPos = tileMap.CellToWorld(position) + new Vector3(tileMap.cellSize.x / 2f, tileMap.cellSize.y / 2f);
                 Instantiate(questionBlockPrefab, gridPos, Quaternion.identity);
             }
         }
@@ -52,25 +48,19 @@ public class BlockBehaviour : MonoBehaviour
     {
         Debug.Log(velocity);
 
-        if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0.5f)
+      if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0.5f)
         {
 
-            if (audioSource && brickBreakSound)
-            {
-                audioSource.PlayOneShot(brickBreakSound);
-            }
             foreach (ContactPoint2D hit in collision.contacts)
             {
                 Vector2 hitPosition = new Vector2();
                 hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
                 hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                if (tileMap.GetTile(tileMap.WorldToCell(hitPosition)).name.Equals("brick_block"))
+                //hitPosition += new Vector2(1, 0);
+                Debug.Log(tileMap.WorldToCell(hitPosition));
+                TileBase tile = tileMap.GetTile(tileMap.WorldToCell(hitPosition));
+                if (tile && tile.name == "brick_block")
                     tileMap.SetTile(tileMap.WorldToCell(hitPosition), null);
-            }
-
-            if (audioSource && brickBreakSound)
-            {
-                audioSource.PlayOneShot(brickBreakSound);
             }
         }
 
@@ -78,7 +68,7 @@ public class BlockBehaviour : MonoBehaviour
         {
             collision.gameObject.tag = "Untagged";
             collision.gameObject.GetComponent<Animator>().SetTrigger("Hit");
-            GameObject powerUp = Instantiate(powerUps[2], collision.gameObject.transform.position, Quaternion.identity);
+            GameObject powerUp = Instantiate(powerUps[Random.Range(0, powerUps.Length)], collision.gameObject.transform.position, Quaternion.identity);
             StartCoroutine(powerUpPopUp(powerUp));
         }
     }

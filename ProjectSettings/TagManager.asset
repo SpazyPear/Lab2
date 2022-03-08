@@ -9,12 +9,8 @@ TagManager:
   - Tilemap
   - QuestionBlock
   - PowerUp
-<<<<<<< Updated upstream
-=======
   - Coin
   - Enemy
-  - Plant
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
