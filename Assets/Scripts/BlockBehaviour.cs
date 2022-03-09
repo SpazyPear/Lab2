@@ -61,6 +61,7 @@ public class BlockBehaviour : MonoBehaviour
                 TileBase tile = tileMap.GetTile(tileMap.WorldToCell(hitPosition));
                 if (tile && tile.name == "brick_block")
                     tileMap.SetTile(tileMap.WorldToCell(hitPosition), null);
+                
             }
         }
 
