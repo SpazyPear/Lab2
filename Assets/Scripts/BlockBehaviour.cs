@@ -80,11 +80,18 @@ public class BlockBehaviour : MonoBehaviour
             switch (collision.gameObject.GetComponent<SpriteRenderer>().sprite.name)
             {
                 case "fire_flower":
-                    powerUpManager.changeState(State.FireFlower);
+                    if (GameObject.Find("mario").GetComponent<Transform>().localScale.y < 1.5f)
+                    {
+                        powerUpManager.changeState(State.FireFlower);
+                    }
+                    else
+                    {
+                        Debug.Log("Not normal size. Cant shoot");
+                    }
                     break;
                 case "starman":
                     powerUpManager.changeState(State.Star);
-                    break;
+            break;
                 case "coin":
                     break;
                 case "magic_mushroom":

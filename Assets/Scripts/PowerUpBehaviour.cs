@@ -15,8 +15,7 @@ public class PowerUpBehaviour : MonoBehaviour
     bool FireFlowerActive = false;
 
     //BIGEFFECT WITH MUSHROOM
-    [Header("BIG!")]
-    public float bigDuration;
+
     // Start is called before the first frame update
     void Start()
     {
