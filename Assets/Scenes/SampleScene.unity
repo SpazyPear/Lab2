@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.5
+      value: 11.28
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 827901295}
   - component: {fileID: 827901297}
   - component: {fileID: 827901298}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -1259,7 +1259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827901293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1297,7 +1297,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0060946345, y: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 1076182388}
   - component: {fileID: 1076182387}
   - component: {fileID: 1076182386}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -1754,7 +1754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194204429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.4, y: -1.3800001, z: 0}
+  m_LocalPosition: {x: 15.4, y: -0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1771,7 +1771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217009165}
   - component: {fileID: 1217009166}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlantMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1952,7 +1952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330042830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.4, y: 0.52, z: 0}
+  m_LocalPosition: {x: 15.4, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8807,7 +8807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1931380405}
   - component: {fileID: 1931380404}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlantMovement (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8856,6 +8856,10 @@ PrefabInstance:
     - target: {fileID: 153384890577569096, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_Name
       value: pipe (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 153384890577569096, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2295261319941113303, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_RootOrder
@@ -8982,8 +8986,16 @@ PrefabInstance:
       value: pipe
       objectReference: {fileID: 0}
     - target: {fileID: 153384890577569096, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 153384890577569096, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744286634430425967, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295261319941113303, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_RootOrder
@@ -8995,7 +9007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295261319941113303, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.58
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 2295261319941113303, guid: 1d645d45e2b65f64a88ddad150c903cf, type: 3}
       propertyPath: m_LocalPosition.z

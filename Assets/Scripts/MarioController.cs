@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MarioController : MonoBehaviour
 {
@@ -98,10 +99,12 @@ public class MarioController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0) {
-            lives--;
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Plant") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0) {
+            
             updateLivesCounter();
             canHurt = false;
+            SceneManager.LoadScene("SampleScene");
+            lives--;
         }
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
         {
@@ -115,6 +118,15 @@ public class MarioController : MonoBehaviour
             Destroy(collision.gameObject);
             Instantiate(shell, shellPosition, Quaternion.identity);
         }
+        else if (collision.gameObject.CompareTag("Plant"))
+        {
+            
+            updateLivesCounter();
+            canHurt = false;
+            SceneManager.LoadScene("SampleScene");
+            lives--;
+        }
+
         updateScoreCounter();
     }
 
