@@ -32,7 +32,7 @@ public class MarioManager : MonoBehaviour
         {
             isGrounded = false;
             canBeGrounded = false;
-            curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
+            curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 9, ForceMode2D.Impulse);
             await isGroundedTimer();
         }
 
