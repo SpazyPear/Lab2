@@ -46,9 +46,11 @@ public class MarioController : MonoBehaviour
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
         if(transform.localPosition.y<-5 && liveSubtract)
         {
+            updateLivesCounter();
+            canHurt = false;
+            SceneManager.LoadScene("SampleScene");
             lives--;
             liveSubtract = false;
-            //Insert dying procedure here
         }
           
     }
