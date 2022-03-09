@@ -22,7 +22,7 @@ public class PowerUpBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && FireFlowerActive)
+        if (Input.GetMouseButtonDown(0))
         {
             GameObject fireBallObj = Instantiate(fireBall, new Vector3(marioRenderer.gameObject.transform.position.x + marioRenderer.gameObject.transform.localScale.x, marioRenderer.gameObject.transform.position.y), Quaternion.identity);
             fireBallObj.GetComponent<Bounce>().forward = transform.localScale.x;

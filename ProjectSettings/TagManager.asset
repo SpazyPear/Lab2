@@ -11,6 +11,8 @@ TagManager:
   - PowerUp
   - Coin
   - Enemy
+  - Shell
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - UI
   - FireBall
   - Player
-  - 
-  - 
+  - Tilemap
+  - Enemy
   - 
   - 
   - 

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class EnemyMovement : MonoBehaviour
     public float timerDuration = 2f;
     public float speed = 2f;
     CancellationTokenSource token;
+    public Tilemap tileMap;
+    bool canTurn = true;
 
 
     // Start is called before the first frame update
     async void Start()
     {
+        tileMap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
         rb = GetComponent<Rigidbody2D>();
         timer = timerDuration;
         token = new CancellationTokenSource();
@@ -42,7 +46,12 @@ public class EnemyMovement : MonoBehaviour
         float currentSpeed = speed;
         while (true)
         {
-            if (!isColliding)
+            int direction = currentSpeed > 0 ? 1 : -1;
+            TileBase tileBelow = tileMap.GetTile(tileMap.WorldToCell(transform.position + new Vector3(direction, -1)));
+            TileBase tileSide = tileMap.GetTile(tileMap.WorldToCell(transform.position + new Vector3(direction, 0)));
+
+
+            if (!isColliding && tileBelow != null && tileSide == null)
             {
                 transform.position += new Vector3(Time.deltaTime * currentSpeed, 0f);
                 timer -= Time.deltaTime;
@@ -65,11 +74,21 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
             isColliding = true;
+
+        if (collision.gameObject.CompareTag("Fireball"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+
             isColliding = false;
     }
 
