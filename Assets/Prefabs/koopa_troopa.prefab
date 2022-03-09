@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDuration: 2
   speed: 2
+  tileMap: {fileID: 0}
 --- !u!50 &-1860702626542738473
 Rigidbody2D:
   serializedVersion: 4
