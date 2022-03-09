@@ -46,7 +46,8 @@ public class PowerUpBehaviour : MonoBehaviour
                 StartCoroutine(starEffect());
                 break;
             case State.Mushroom:
-                StartCoroutine(bigEffect());
+                //MushroomEffect();
+                StartCoroutine(GetBIG());
                 break;
         }
     }
@@ -75,14 +76,28 @@ public class PowerUpBehaviour : MonoBehaviour
         marioRenderer.color = Color.white;
         currentState = 0;
     }
-    IEnumerator bigEffect()
+    private void MushroomEffect()
     {
-        float bigDuration = 2f;
+        if (GameObject.Find("mario").GetComponent<MarioController>().lives < 3)
+        {
+            GameObject.Find("mario").GetComponent<MarioController>().lives += 1;
+        }
+        else
+        {
+            GameObject.Find("mario").GetComponent<Transform>().localScale = new Vector3(1.5f,1.5f,1);
+        }
+        /*float bigDuration = 2f;
         while (bigDuration > 0)
         {
             bigDuration -= Time.deltaTime;
             marioRenderer.size = new Vector2(2, 2);
         }
-        yield return null;
+        yield return null;*/
+    }
+    IEnumerator GetBIG()
+    {
+        GameObject.Find("mario").GetComponent<Transform>().localScale = new Vector3(1.5f, 1.5f, 1);
+        yield return new WaitForSeconds(5);
+        GameObject.Find("mario").GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
     }
 }

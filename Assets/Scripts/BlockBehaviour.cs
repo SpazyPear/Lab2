@@ -87,6 +87,9 @@ public class BlockBehaviour : MonoBehaviour
                     break;
                 case "coin":
                     break;
+                case "magic_mushroom":
+                    powerUpManager.changeState(State.Mushroom);
+                    break;
             }
             Destroy(collision.gameObject);
         }
