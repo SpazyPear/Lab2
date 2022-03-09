@@ -18,6 +18,9 @@ public class MarioController : MonoBehaviour
     public Text lifeCounter;
     public Text scoreCounter;
 
+   public GameObject shell;
+
+    bool liveSubtract;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,8 @@ public class MarioController : MonoBehaviour
         updateCoinCounter();
         score = 0;
         updateScoreCounter();
+        liveSubtract = true;
+        
     }
 
     // Update is called once per frame
@@ -35,6 +40,13 @@ public class MarioController : MonoBehaviour
     {
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
+        if(transform.localPosition.y<-5 && liveSubtract)
+        {
+            lives--;
+            liveSubtract = false;
+            //Insert dying procedure here
+        }
+          
     }
 
     private void FixedUpdate()
@@ -68,7 +80,7 @@ public class MarioController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && velocity.y >= 0) {
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0) {
             lives--;
             updateLivesCounter();
             canHurt = false;
@@ -76,7 +88,14 @@ public class MarioController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
         {
             score += 100;
+            collision.gameObject.transform.localScale = new Vector3(1, 0.1f, 1);
+            Destroy(collision.gameObject, 0.3f);
+        }
+        else if (collision.gameObject.CompareTag("KoopaTroopa") && velocity.y < 0)
+        {
+            Vector3 shellPosition = collision.gameObject.transform.localPosition;
             Destroy(collision.gameObject);
+            Instantiate(shell, shellPosition, Quaternion.identity);
         }
         updateScoreCounter();
     }
