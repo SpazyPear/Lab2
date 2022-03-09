@@ -46,7 +46,6 @@ public class BlockBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(velocity);
 
       if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0.5f)
         {

@@ -72,6 +72,24 @@ public class MarioController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PipeDown")
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
+            }
+        }
+        if (collision.gameObject.tag == "PipeSide")
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
+            }
+        }
+    }
+
     void ExtraLife()
     {
         lives++;
