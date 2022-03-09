@@ -17,6 +17,7 @@ TagManager:
   - Pipe
   - KoopaTroopa
   - leftShell
+  - SLevelPipe
   layers:
   - Default
   - TransparentFX
