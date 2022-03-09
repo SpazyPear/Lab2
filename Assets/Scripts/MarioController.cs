@@ -39,13 +39,18 @@ public class MarioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        PlayerPrefs.SetInt("Life Counter", lives);
+
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
         if(transform.localPosition.y<-5 && liveSubtract)
         {
+            updateLivesCounter();
+            canHurt = false;
+            SceneManager.LoadScene("SampleScene");
             lives--;
             liveSubtract = false;
-            //Insert dying procedure here
         }
           
     }
@@ -118,14 +123,6 @@ public class MarioController : MonoBehaviour
             Vector3 shellPosition = collision.gameObject.transform.localPosition;
             Destroy(collision.gameObject);
             Instantiate(shell, shellPosition, Quaternion.identity);
-        }
-        else if (collision.gameObject.CompareTag("Plant"))
-        {
-            
-            updateLivesCounter();
-            canHurt = false;
-            SceneManager.LoadScene("SampleScene");
-            lives--;
         }
 
         updateScoreCounter();
