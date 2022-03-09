@@ -2449,6 +2449,10 @@ PrefabInstance:
       value: mario
       objectReference: {fileID: 0}
     - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: shell
+      value: 
+      objectReference: {fileID: 5755988114720709250, guid: 6e2a1cff427134b1ca4c5706f985cd8a, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: coinCounter
       value: 
       objectReference: {fileID: 380023603}
