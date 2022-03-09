@@ -44,7 +44,7 @@ public class MarioController : MonoBehaviour
 
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
-        if(transform.localPosition.y<-5 && liveSubtract)
+        if(transform.localPosition.y<-15 && liveSubtract)
         {
             updateLivesCounter();
             canHurt = false;
@@ -132,6 +132,10 @@ public class MarioController : MonoBehaviour
         else if (collision.gameObject.CompareTag("PowerUp"))
         {
             score += 1000;
+        }
+        if(collision.gameObject.CompareTag("SLevelPipe"))
+        {
+            transform.position = new Vector3(123, 1.2f, 0);
         }
 
         updateScoreCounter();
