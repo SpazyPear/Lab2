@@ -44,6 +44,21 @@ public class MarioController : MonoBehaviour
             }
             Camera.main.GetComponent<TextController>().UpdateCoins(coinCount);
         }
+        if (collision.gameObject.tag == "PipeDown")
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("A");
+                curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
+            }
+        }
+        if (collision.gameObject.tag == "PipeSide")
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
+            }
+        }
     }
 
     void ExtraLife()
