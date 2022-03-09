@@ -2177,8 +2177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b979bba04f0e74cae0ab3d75828e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerTextElement: {fileID: 0}
-  time: 0
+  timerTextElement: {fileID: 1081211313}
+  time: 999
 --- !u!4 &1446637700
 Transform:
   m_ObjectHideFlags: 0
