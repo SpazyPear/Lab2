@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using TMPro;
 
 public class BlockBehaviour : MonoBehaviour
 {
@@ -16,6 +19,14 @@ public class BlockBehaviour : MonoBehaviour
     public float powerUpPopUpSpeed = 1.5f;
     public PowerUpBehaviour powerUpManager;
     Transform curTransform;
+
+    //Game End 
+    private Text text;
+    public bool GameEnd;
+    [SerializeField]
+    private TextMeshProUGUI Again;
+    [SerializeField]
+    private TextMeshProUGUI Bye;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +48,57 @@ public class BlockBehaviour : MonoBehaviour
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
     }
+    //
+    private void Awake()
+    {
+        //get font
+        Font arial;
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        //creating canvas
+        GameObject Canvas = new GameObject();
+        Canvas.name = "Canvas";
+        Canvas.AddComponent<Canvas>();
+        Canvas.AddComponent<CanvasScaler>();
+        Canvas.AddComponent<GraphicRaycaster>();
+        Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+        //creating a text box
+        GameObject textbox = new GameObject();
+        textbox.transform.parent = Canvas.transform;
+        textbox.AddComponent<Text>();
+        text = textbox.GetComponent<Text>();
+        text.font = arial;
+        text.text = "";
+        text.fontSize = 40;
+        text.alignment = TextAnchor.MiddleCenter;
+        RectTransform rect = textbox.GetComponent<RectTransform>();
+        rect.localPosition = new Vector3(0, 0, 0);
+        rect.sizeDelta = new Vector2(500, 200);
+        /*//creating play again and quit button
+        GameObject PlayAgainButton = new GameObject();
+        PlayAgainButton.transform.parent = Canvas.transform;
+        PlayAgainButton.AddComponent<RectTransform>();
+        PlayAgainButton.AddComponent<Button>();
+        PlayAgainButton.transform.position = new Vector3(200, 150, 0);
+        PlayAgainButton.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+        PlayAgainButton.GetComponent<Button>().onClick.AddListener(again);
 
+        GameObject QuitButton = new GameObject();
+        QuitButton.transform.parent = Canvas.transform;
+        QuitButton.AddComponent<RectTransform>();
+        QuitButton.AddComponent<Button>();
+        QuitButton.transform.position = new Vector3(800, 150, 0);
+        QuitButton.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+        QuitButton.GetComponent<Button>().onClick.AddListener(bye);*/
+    }
+    //Play again and quit button method
+    public void again()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void bye()
+    {
+        Application.Quit();
+    }
     private void FixedUpdate()
     {
         if (curTransform)
@@ -70,6 +131,14 @@ public class BlockBehaviour : MonoBehaviour
             collision.gameObject.GetComponent<Animator>().SetTrigger("Hit");
             GameObject powerUp = Instantiate(powerUps[Random.Range(0, powerUps.Length)], collision.gameObject.transform.position, Quaternion.identity);
             StartCoroutine(powerUpPopUp(powerUp));
+        }
+        //end game col with flag
+        if (collision.gameObject.tag == "Flag")
+        {
+            //Debug.Log("hit the flag");
+            GameEnd = true;
+            
+            text.text = "You Win! Princess is inside!";
         }
     }
 
