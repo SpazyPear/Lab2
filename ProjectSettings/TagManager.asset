@@ -11,6 +11,8 @@ TagManager:
   - PowerUp
   - Coin
   - Enemy
+  - PipeDown
+  - PipeSide
   layers:
   - Default
   - TransparentFX

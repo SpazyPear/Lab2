@@ -44,11 +44,14 @@ public class MarioController : MonoBehaviour
             }
             Camera.main.GetComponent<TextController>().UpdateCoins(coinCount);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "PipeDown")
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
-                Debug.Log("A");
                 curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
             }
         }
