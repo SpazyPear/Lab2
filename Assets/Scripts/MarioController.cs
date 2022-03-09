@@ -116,6 +116,7 @@ public class MarioController : MonoBehaviour
             score += 100;
             collision.gameObject.transform.localScale = new Vector3(1, 0.1f, 1);
             Destroy(collision.gameObject, 0.3f);
+            curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 4, ForceMode2D.Impulse);
         }
         else if (collision.gameObject.CompareTag("KoopaTroopa") && velocity.y < 0)
         {
