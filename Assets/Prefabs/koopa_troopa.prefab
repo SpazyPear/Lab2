@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2279923788334133952}
   - component: {fileID: -3313558525091993391}
   - component: {fileID: -1860702626542738473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: koopa_troopa
   m_TagString: KoopaTroopa
   m_Icon: {fileID: 0}

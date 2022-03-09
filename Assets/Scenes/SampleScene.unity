@@ -395,6 +395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: koopa_troopa
       objectReference: {fileID: 0}
+    - target: {fileID: 515609389765506783, guid: 27eb67e3edd1ae042a35ed1594e18275, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 539561606245235652, guid: 27eb67e3edd1ae042a35ed1594e18275, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -470,7 +474,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &380023601
 GameObject:
@@ -1346,7 +1350,7 @@ Transform:
   m_Children:
   - {fileID: 1906495852}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076182384
 GameObject:
@@ -2596,7 +2600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2802,7 +2806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6530740891796010604, guid: 67685f0b88aceff44a1234619e120ec0, type: 3}
       propertyPath: m_LocalPosition.x

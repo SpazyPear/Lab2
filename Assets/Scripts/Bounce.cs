@@ -26,9 +26,16 @@ public class Bounce : MonoBehaviour
         {
             rb.velocity = new Vector3(4f * forward, bounceForce);
         }
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa") ||  collision.gameObject.CompareTag("Plant"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa"))
         {
             Destroy(collision.gameObject); 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("Plant"))
+        {
+            Destroy(other.gameObject); 
         }
     }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194204430}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PositionB
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1330042831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PositionA
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5764750274738856548}
   - component: {fileID: 5764750274738856551}
   - component: {fileID: 5764750274738856545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
