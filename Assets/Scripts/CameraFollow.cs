@@ -32,6 +32,6 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 TargetPosition()
     {
-        return new Vector3(target.position.x, basePosition.y, basePosition.z);
+        return new Vector3(target.position.x, target.position.y, basePosition.z);
     }
 }
