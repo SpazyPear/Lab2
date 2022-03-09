@@ -1297,7 +1297,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0060946345, y: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 1217009166}
   m_Layer: 11
   m_Name: PlantMovement
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2049,7 +2049,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 93334300cc31ef746a1cda82a85e14ef, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2400,6 +2400,10 @@ PrefabInstance:
       propertyPath: tileMap
       value: 
       objectReference: {fileID: 1906495854}
+    - target: {fileID: 455404509, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 021af47a831e6a944b05aa24e89d3bc5, type: 3}
     - target: {fileID: 194314068906714709, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -2453,17 +2457,49 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5755988114720709250, guid: 6e2a1cff427134b1ca4c5706f985cd8a, type: 3}
     - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: coinSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ec81f8d9d4a65d4bb763da749a27417, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: pipeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e4885a13df0a344988b9dbac1013c3b, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 23907b5d4c6cf6449ba48c61ecf7960e, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: shellSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5398575779f131545a75af83911c218a, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: coinCounter
       value: 
       objectReference: {fileID: 380023603}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: goombaSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5398575779f131545a75af83911c218a, type: 3}
     - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: lifeCounter
       value: 
       objectReference: {fileID: 218764752}
     - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: powerupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c182997560676b4cbf29b1cdb24435c, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
       propertyPath: scoreCounter
       value: 
       objectReference: {fileID: 6499296}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: breakbrickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 398eb7cdaeca2e345b6e4b414cb61d9c, type: 3}
+    - target: {fileID: 5814399969060304377, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
+      propertyPath: powerupAppearSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3bd73649558530c42ace8341f80fa4a9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4164589d3c81e4845bf580cea7dc2901, type: 3}
 --- !u!1 &1562046934
@@ -9547,7 +9583,7 @@ GameObject:
   - component: {fileID: 1931380404}
   m_Layer: 11
   m_Name: PlantMovement (1)
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

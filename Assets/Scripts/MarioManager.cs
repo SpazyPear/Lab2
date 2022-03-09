@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class MarioManager : MonoBehaviour
 {
+    public AudioClip jumpSound;
+
     public int marioSpeed;
     bool isGrounded = true;
     public MarioController marioController;
@@ -30,6 +32,7 @@ public class MarioManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position, 1f);
             isGrounded = false;
             canBeGrounded = false;
             curTransform.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 9, ForceMode2D.Impulse);

@@ -6,6 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MarioController : MonoBehaviour
 {
+
+    public AudioClip deathSound;
+    public AudioClip breakbrickSound;
+    public AudioClip shellSound;
+    public AudioClip goombaSound;
+    public AudioClip coinSound;
+    public AudioClip pipeSound;
+    public AudioClip powerupAppearSound;
+    public AudioClip powerupSound;
+
+
     public int lives;
     public int coinCount;
     public int score;
@@ -48,7 +59,7 @@ public class MarioController : MonoBehaviour
         {
             updateLivesCounter();
             canHurt = false;
-            SceneManager.LoadScene("SampleScene");
+            //SceneManager.LoadScene("SampleScene");
             lives--;
             liveSubtract = false;
         }
@@ -65,6 +76,7 @@ public class MarioController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Coin")
         {
+            AudioSource.PlayClipAtPoint(coinSound, transform.position, 1f);
             coinCount++;
             score += 200;
             Destroy(collision.gameObject);
@@ -73,9 +85,25 @@ public class MarioController : MonoBehaviour
                 ExtraLife();
                 coinCount = 0;
             }
-            updateCoinCounter();
-            updateScoreCounter();
         }
+
+        if (collision.gameObject.tag == "PowerUp")
+        {
+            AudioSource.PlayClipAtPoint(powerupSound, transform.position, 1f);
+            score += 1000;
+        }
+
+        if (collision.gameObject.tag == "Plant")
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
+            updateLivesCounter();
+            canHurt = false;
+            lives--;
+        }
+
+        updateCoinCounter();
+        updateScoreCounter();
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -84,6 +112,7 @@ public class MarioController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
+                AudioSource.PlayClipAtPoint(pipeSound, transform.position, 1f);
                 curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
             }
         }
@@ -91,6 +120,7 @@ public class MarioController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
+                AudioSource.PlayClipAtPoint(pipeSound, transform.position, 1f);
                 curTransform.position = collision.gameObject.GetComponent<PipeScript>().destination;
             }
         }
@@ -104,15 +134,18 @@ public class MarioController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Plant") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0) {
-            
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa")) && velocity.y >= 0)
+        {
+
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
             updateLivesCounter();
             canHurt = false;
-            SceneManager.LoadScene("SampleScene");
+            //SceneManager.LoadScene("SampleScene");
             lives--;
         }
         else if (collision.gameObject.CompareTag("Enemy") && velocity.y < 0)
         {
+            AudioSource.PlayClipAtPoint(goombaSound, transform.position, 1f);
             score += 100;
             collision.gameObject.transform.localScale = new Vector3(1, 0.1f, 1);
             Destroy(collision.gameObject, 0.3f);
@@ -120,6 +153,7 @@ public class MarioController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("KoopaTroopa") && velocity.y < 0)
         {
+            AudioSource.PlayClipAtPoint(goombaSound, transform.position, 1f);
             Vector3 shellPosition = collision.gameObject.transform.localPosition;
             score += 200;
             Destroy(collision.gameObject);
@@ -127,13 +161,11 @@ public class MarioController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Tilemap") && velocity.y > 0)
         {
+            AudioSource.PlayClipAtPoint(breakbrickSound, transform.position, 1f);
             score += 50;
         }
-        else if (collision.gameObject.CompareTag("PowerUp"))
-        {
-            score += 1000;
-        }
-        if(collision.gameObject.CompareTag("SLevelPipe"))
+
+        if (collision.gameObject.CompareTag("SLevelPipe"))
         {
             transform.position = new Vector3(123, 1.2f, 0);
         }
