@@ -51,7 +51,7 @@ public class MarioController : MonoBehaviour
     void Update()
     {
 
-        PlayerPrefs.SetInt("Life Counter", lives);
+        //PlayerPrefs.SetInt("Life Counter", lives);
 
         curTransform = transform.parent == null ? transform : transform.parent;
         velocity = (curTransform.position - prevPos) / Time.deltaTime;
@@ -60,10 +60,15 @@ public class MarioController : MonoBehaviour
             updateLivesCounter();
             canHurt = false;
             //SceneManager.LoadScene("SampleScene");
-            lives--;
+            lives=0;
             liveSubtract = false;
         }
-          
+
+        if(lives==0)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+           lifeCounter.text = lives.ToString();
     }
 
     private void FixedUpdate()
