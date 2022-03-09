@@ -26,7 +26,7 @@ public class ShellMovement : MonoBehaviour
      private void OnCollisionEnter2D(Collision2D collision)
      { 
         hitShell = true;
-         if (collision.gameObject.CompareTag("Enemy"))
+         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KoopaTroopa"))
          {
              Destroy(collision.gameObject);
          }
